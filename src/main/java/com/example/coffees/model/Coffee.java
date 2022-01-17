@@ -28,6 +28,12 @@ public class Coffee {
         this.price = price;
     }
 
+    public Coffee(int coffeeId, @NotEmpty(message = "Coffee name cannot be empty!") @Length(min = 2, message = "The name must have at least 2 characters!") String name, @Min(value = 0, message = "The price has to be above a positive value!") double price) {
+        this.coffeeId = coffeeId;
+        this.name = name;
+        this.price = price;
+    }
+
     public int getCoffeeId() {
         return coffeeId;
     }

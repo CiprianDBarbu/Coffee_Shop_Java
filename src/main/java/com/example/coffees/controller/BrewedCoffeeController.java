@@ -37,7 +37,7 @@ public class BrewedCoffeeController {
                 .body(brewedCoffeeService.deleteBrewedCoffeeById(coffeeId));
     }
 
-    @GetMapping("/list/{coffeeId}")
+    @GetMapping("/list/byName")
     public ResponseEntity<List<BrewedCoffee>> findBrewedCoffeeByCoffeeName(@RequestBody String coffeeId) {
         return ResponseEntity.ok()
                 .body(brewedCoffeeService.findBrewedCoffeeByCoffeeName(coffeeId));

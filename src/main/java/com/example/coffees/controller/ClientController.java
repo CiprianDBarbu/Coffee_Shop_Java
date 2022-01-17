@@ -5,6 +5,7 @@ import com.example.coffees.service.ClientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -25,7 +26,7 @@ public class ClientController {
 
     @PostMapping("/new")
     public ResponseEntity<Client> saveNewClient(@RequestBody Client client) {
-        return ResponseEntity.ok()
+        return ResponseEntity.created(URI.create("/client" + client.getClientId()))
                 .body(clientService.saveNewClient(client));
     }
 

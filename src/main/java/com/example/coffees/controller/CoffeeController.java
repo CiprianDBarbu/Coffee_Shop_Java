@@ -5,6 +5,7 @@ import com.example.coffees.service.CoffeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -25,14 +26,14 @@ public class CoffeeController {
 
     @PostMapping("/new")
     public ResponseEntity<Coffee> saveNewCoffee(@RequestBody Coffee coffee) {
-        return ResponseEntity.ok()
+        return ResponseEntity.created(URI.create("/coffee" + coffee.getCoffeeId()))
                 .body(coffeeService.saveNewCoffee(coffee));
     }
 
     @PutMapping("/{coffeeId}")
     public ResponseEntity<Coffee> editCoffee(@PathVariable int coffeeId,
                                              @RequestBody Coffee coffee) {
-        return ResponseEntity.ok()
+        return ResponseEntity.created(URI.create("/coffee" + coffeeId))
                 .body(coffeeService.editCoffee(coffeeId, coffee));
     }
 

@@ -1,5 +1,6 @@
 package com.example.coffees.service;
 
+import com.example.coffees.exceptions.NoElementFoundException;
 import com.example.coffees.model.Syrup;
 import com.example.coffees.repository.SyrupRepository;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,15 @@ public class SyrupService {
     public String deleteSyrupById(int syrupId) {
         syrupRepository.deleteById(syrupId);
         return "OK!";
+    }
+
+    public Syrup editSyrup(int syrupId, Syrup syrup) {
+        Syrup actualSyrup = syrupRepository.findById(syrupId)
+                .orElseThrow(() -> new NoElementFoundException("Id not available"));
+
+        actualSyrup.setName(syrup.getName());
+        actualSyrup.setPrice(syrup.getPrice());
+
+        return syrupRepository.save(actualSyrup);
     }
 }
